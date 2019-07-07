@@ -1,0 +1,43 @@
+using System;
+
+namespace FindingPrimes
+{
+    class TestCase
+    {
+        int n;
+        int m;
+
+        public TestCase(int n, int m)
+        {
+            this.n = n;
+            this.m = m;
+        }
+
+        public int CalculatePrimeNumbersAmount()
+        {
+            int primeNumbers =0;
+            for (int i = n; i <= m; i++)
+            {
+                if(isPrimeNumber(i))
+                    primeNumbers++;
+            }
+            return primeNumbers;
+        }
+
+        private bool isPrimeNumber(int number)
+        {
+            if (number <= 1) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            var boundary = (int)Math.Floor(Math.Sqrt(number));
+
+            for (int i = 3; i <= boundary; i+=2)
+                if (number % i == 0)
+                    return false;
+
+            return true;        
+        }
+    }
+    
+}
